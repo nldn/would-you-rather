@@ -25,8 +25,8 @@ const QuestionForm = ({ currentUser, dispatch, loading }) => {
     <div className="card">
       <div className="card-body">
         <h1 className="card-title">New Question</h1>
-        <hr/>
-        
+        <hr />
+
         {loading === true ? (
           <Loading text="posting..." />
         ) : (

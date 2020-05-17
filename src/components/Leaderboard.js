@@ -6,17 +6,21 @@ const Leaderboard = ({ users }) => {
 
   let usersArray = Object.keys(users).map((key) => {
     const id = users[key].id;
+    console.log(users[key]);
 
     const questionsAsked = users[key].questions.length;
     const questionsAnswered = Object.keys(users[key].answers).length;
 
     const total = questionsAsked + questionsAnswered;
 
+    const avatar = users[key].avatarURL;
+
     return {
       id,
       questionsAsked,
       questionsAnswered,
       total,
+      avatar
     };
   });
 
@@ -41,6 +45,7 @@ const Leaderboard = ({ users }) => {
   };
 
   usersArray = sortUsers(usersArray, sortBy);
+  console.log(usersArray);
 
   return (
     <div>
@@ -55,18 +60,25 @@ const Leaderboard = ({ users }) => {
       {Object.keys(usersArray).map((key) => (
         <div key={usersArray[key].id} className="card mt-3 mb-3">
           <div className="card-body">
-            <h3 className="card-title text-center">
-              {usersArray[key].id}
-            </h3>
             <div className="row">
-              <div className="col text-center">
-                <span>Asked: {usersArray[key].questionsAsked}</span>
+              <div className="col-3">
+                <img src={usersArray[key].avatar} alt="" style={{ width: "100%" }}/>
               </div>
-              <div className="col text-center">
-                <span>Answered: {usersArray[key].questionsAnswered}</span>
-              </div>
-              <div className="col text-center">
-                <span>Total: {usersArray[key].total}</span>
+              <div className="col-9">
+                <h3 className="card-title text-center">
+                  {usersArray[key].id}
+                </h3>
+                <div className="row">
+                  <div className="col text-center">
+                    <span>Asked: {usersArray[key].questionsAsked}</span>
+                  </div>
+                  <div className="col text-center">
+                    <span>Answered: {usersArray[key].questionsAnswered}</span>
+                  </div>
+                  <div className="col text-center">
+                    <span>Total: {usersArray[key].total}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
